@@ -1,7 +1,15 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
-const flightSchema = new Schema({
+//const Schema = mongoose.Schema;
+//define the destination subdocument schema
+const destinationSchema = new mongoose.Schema({
+    airport: {
+        type: String,
+        enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN']
+    },
+    arrival: Date
+});
+//define the flight parent schema
+const flightSchema = new mongoose.Schema({
 	airline: {
 		type: String,
 		enum: ['American', 'Southwest', 'United']
@@ -22,8 +30,10 @@ const flightSchema = new Schema({
         default: function () {
             return new Date().getFullYear()+1;
           }
-    } 
-    
+    } ,
+    //add the destinations subdocument array
+    destinations: [destinationSchema],
+	
 }, {
 timestamps: true 
 

@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/flights', {
+mongoose.connect('mongodb://127.0.0.1/flights', {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true
-});
+  useUnifiedTopology: true
+ });
 
 // shortcut to mongoose.connection object
 const db = mongoose.connection;
